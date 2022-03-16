@@ -10,6 +10,9 @@ public class handController : MonoBehaviour
 
     ActionBasedController controller;
     public hand hand;
+    
+    
+
 
     // Start is called before the first frame update
     void Start()
