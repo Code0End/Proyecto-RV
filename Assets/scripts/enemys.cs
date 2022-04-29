@@ -23,7 +23,7 @@ public class enemys : MonoBehaviour
     private Material[] dissm;
     hb hb;
     float dissolverate = 0.02f;
-    float rr=0.02f; 
+    float rr=0.04f; 
 
     Canvas cv;
 
@@ -101,8 +101,8 @@ public class enemys : MonoBehaviour
         anim.avatar = null;
 
         float x = UnityEngine.Random.Range(-1f,1f);
-        gc1.AddForce(new Vector3(x,0f,1f)*300f,ForceMode.Impulse);
-        gc1.AddForce(Vector3.up * UnityEngine.Random.Range(0f,200f), ForceMode.Impulse);
+        gc1.AddForce(new Vector3(x,0f,1f)*100f,ForceMode.Impulse);
+        gc1.AddForce(Vector3.up * UnityEngine.Random.Range(0f,100f), ForceMode.Impulse);
 
 
 
