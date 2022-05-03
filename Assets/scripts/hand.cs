@@ -26,7 +26,7 @@ public class hand : MonoBehaviour
 
     LineRenderer lr;
     Transform[] points;
-    TrailRenderer Tr;
+    public TrailRenderer Tr;
     VisualEffect ve;
     public GameObject e1;
 
@@ -37,7 +37,6 @@ public class hand : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         lr = GetComponent<LineRenderer>();
-        Tr = GetComponent<TrailRenderer>();
         ve = this.gameObject.GetComponentInChildren<VisualEffect>();
         lr.enabled = false;
         Tr.enabled = false;
@@ -72,13 +71,11 @@ public class hand : MonoBehaviour
                 end = fistpos.transform.position;
                 lr.SetPosition(0, start);
                 lr.SetPosition(1, end);
-                //lr.enabled = true;
                 dist = Vector3.Distance(start, end);
                 damage = (dist * 100) / 2;
                 Debug.Log(damage);
                 Tr.enabled = false;
                 ve.Play();
-                //enemys r = collision.gameObject.GetComponent<enemys>();
                 collision.gameObject.GetComponent<enemys>().taked(damage); 
               
             }
@@ -113,25 +110,12 @@ public class hand : MonoBehaviour
                 {
                     lr.enabled = false;
                     start = fistpos.transform.position;
-                    punchstarted = true;
-                    
-
+                    punchstarted = true;             
                 }
-
-
             }
             else
             {
                 Tr.enabled = false; 
-                //punchstarted = false;
-                //end = fistpos.transform.position;
-                //lr.SetPosition(0, start);
-                //lr.SetPosition(1, end);
-                //lr.enabled = true;
-                //dist = Vector3.Distance(start, end);
-                //damage = (dist * 100)/2;
-                //Debug.Log(damage);
-
             }
         }
         

@@ -1475,7 +1475,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b158a6cc0b620c4da0b8f57db9919bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyref: {fileID: 0}
   hp: 100
   maxhp: 0
   posture: 0

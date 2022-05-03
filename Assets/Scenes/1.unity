@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.3457708, g: 0.34368324, b: 0.30675608, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &76371011
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -272,6 +272,7 @@ MonoBehaviour:
   fistpos: {fileID: 0}
   damage: 0
   p: {fileID: 0}
+  Tr: {fileID: 0}
   e1: {fileID: 0}
 --- !u!95 &168350218
 Animator:
@@ -992,7 +993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &558396626
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3876,6 +3877,7 @@ MonoBehaviour:
   fistpos: {fileID: 379890013}
   damage: 0
   p: {fileID: 0}
+  Tr: {fileID: 0}
   e1: {fileID: 0}
 --- !u!95 &1323109360
 Animator:
@@ -4146,6 +4148,7 @@ MonoBehaviour:
   fistpos: {fileID: 1727870700}
   damage: 0
   p: {fileID: 0}
+  Tr: {fileID: 0}
   e1: {fileID: 0}
 --- !u!95 &1355563856
 Animator:
@@ -5913,6 +5916,7 @@ MonoBehaviour:
   fistpos: {fileID: 0}
   damage: 0
   p: {fileID: 0}
+  Tr: {fileID: 0}
   e1: {fileID: 0}
 --- !u!95 &1914858230
 Animator:
