@@ -6,6 +6,7 @@ TagManager:
   tags:
   - eb1
   - mesh1
+  - eb2
   layers:
   - Default
   - TransparentFX

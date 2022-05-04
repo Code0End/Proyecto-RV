@@ -3,11 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using UnityEngine.XR.Interaction.Toolkit;
 
 [RequireComponent(typeof(Animator))]
 
 public class hand : MonoBehaviour
 {
+    public XRBaseController currc;
+    public float defampl = 0.2f;
+    public float defdur = 0.2f;
 
     Animator animator;
     private float gripTarget;
@@ -30,25 +34,23 @@ public class hand : MonoBehaviour
     VisualEffect ve;
     public GameObject e1;
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         lr = GetComponent<LineRenderer>();
         ve = this.gameObject.GetComponentInChildren<VisualEffect>();
         lr.enabled = false;
-        Tr.enabled = false;
-        
+        Tr.enabled = true;
+        currc.enableInputActions = false;
+        currc.enableInputActions = true;
+        currc.enableInputTracking = false;
+        currc.enableInputTracking = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-
         AnimateHand(); 
-
     }
 
     internal void SetGrip(float v)
@@ -74,17 +76,32 @@ public class hand : MonoBehaviour
                 dist = Vector3.Distance(start, end);
                 damage = (dist * 100) / 2;
                 Debug.Log(damage);
-                Tr.enabled = false;
+                Tr.emitting = false;
                 ve.Play();
                 collision.gameObject.GetComponent<enemys>().taked(damage); 
-              
+            }
+            if (collision.gameObject.tag == "eb2")
+            {
+                punchstarted = false;
+                end = fistpos.transform.position;
+                lr.SetPosition(0, start);
+                lr.SetPosition(1, end);
+                dist = Vector3.Distance(start, end);
+                damage = (dist * 100) / 2;
+                Debug.Log(damage);
+                Tr.emitting = false;
+                ve.Play();
+                collision.gameObject.GetComponent<boxs>().taked(damage);
+                sendhap();
             }
         }
     }
 
-
-
-
+    public void sendhap()
+    {
+        currc.SendHapticImpulse(defampl, defdur);
+    }
+    
     void AnimateHand() {
 
         if (gripCurrent != gripTarget)
@@ -105,7 +122,7 @@ public class hand : MonoBehaviour
             
             if (gripCurrent < gripTarget && triggerCurrent < triggerTarget)
             {
-                Tr.enabled = true;
+                Tr.emitting = true;
                 if (punchstarted == false)
                 {
                     lr.enabled = false;
@@ -115,7 +132,7 @@ public class hand : MonoBehaviour
             }
             else
             {
-                Tr.enabled = false; 
+                Tr.emitting = false; 
             }
         }
         

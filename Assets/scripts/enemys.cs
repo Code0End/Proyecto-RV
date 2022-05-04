@@ -48,14 +48,6 @@ public class enemys : MonoBehaviour
 
 
 
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void taked(float d)
     {
         hp = hp - d;
@@ -72,21 +64,13 @@ public class enemys : MonoBehaviour
         }
     }
 
-    //private void FixedUpdate()
-    //{
-      //  GotHit();
-    //}
-
     private void GotHit()
     {
         this.anim.SetTrigger("hit");
     }
 
     private void TurnOnRagdoll()
-    {
-        //RIGID_BODY.useGravity = false;
-     
-      
+    {        
         foreach (Collider c in colliders)
         {
             c.enabled = true;
@@ -109,15 +93,10 @@ public class enemys : MonoBehaviour
     }
 
     private void SetRagdollParts()
-    {
-        //anim.enabled = true;
-       
-
+    {    
         foreach (Collider c in colliders)
         {
-           
-                c.enabled = false;
-                //RagdollParts.Add(c);
+            c.enabled = false;
             
         }
         foreach (Rigidbody c in limbsrbs)
