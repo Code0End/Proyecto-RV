@@ -12,6 +12,7 @@ public class boxs : MonoBehaviour
     public AudioSource as1;
     public float fadedur = 2;
     public fadescreen fs;
+    GameObject fs1;
 
     private Rigidbody rbb1;
     private SpringJoint rbb2;
@@ -20,8 +21,11 @@ public class boxs : MonoBehaviour
 
     void Start()
     {
+        fadedur = 3.8f;
         hp = 100.0f;
         maxhp = 100.0f;
+        fs1 = GameObject.FindGameObjectWithTag("sffder");
+        fs = fs1.GetComponent<fadescreen>();
     }
 
     public void box_action()
@@ -44,8 +48,8 @@ public class boxs : MonoBehaviour
             rbb2 = gameObject.GetComponent<SpringJoint>();
             rbb3 = gameObject.GetComponent<BoxCollider>();
             rbb4 = gameObject.GetComponent<MeshRenderer>();
-            Destroy(rbb1);
             Destroy(rbb2);
+            Destroy(rbb1);
             Destroy(rbb3);
             Destroy(rbb4);
         }
@@ -64,8 +68,17 @@ public class boxs : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-        if (mn==0)
+        if (mn == 0)
+        {
+            SceneManager.LoadScene(2);
+            fs.fadein();
+        }
+        
+        if (mn == 2)
+        {
             SceneManager.LoadScene(1);
+            fs.fadein();
+        }
         if (mn == 1)
         {
 #if UNITY_EDITOR
@@ -74,8 +87,7 @@ public class boxs : MonoBehaviour
          Application.Quit();
 #endif
         }
-            if (mn == 2)
-            SceneManager.LoadScene(0);
+
 
         Destroy(gameObject);
     }

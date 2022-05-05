@@ -125,6 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4752768954203096}
   - component: {fileID: 1214634215142807811}
+  - component: {fileID: -1810030611874957440}
   m_Layer: 0
   m_Name: Wooden Crate Cracked
   m_TagString: Untagged
@@ -178,9 +179,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3987af3066239734cb7a76e9ea9e3d94, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1.25
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -263,6 +264,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-1810030611874957440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168907351885854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88695ee59a0f64844a4ed214dbc34882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  as1: {fileID: 0}
 --- !u!1 &1213141409305074
 GameObject:
   m_ObjectHideFlags: 0

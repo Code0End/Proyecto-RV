@@ -11,7 +11,7 @@ public class hand : MonoBehaviour
 {
     public XRBaseController currc;
     public float defampl = 0.2f;
-    public float defdur = 0.2f;
+    public float defdur = 0.1f;
 
     Animator animator;
     private float gripTarget;
@@ -41,10 +41,6 @@ public class hand : MonoBehaviour
         ve = this.gameObject.GetComponentInChildren<VisualEffect>();
         lr.enabled = false;
         Tr.enabled = true;
-        currc.enableInputActions = false;
-        currc.enableInputActions = true;
-        currc.enableInputTracking = false;
-        currc.enableInputTracking = true;
     }
 
     // Update is called once per frame
