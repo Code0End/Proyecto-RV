@@ -11,7 +11,7 @@ public class hand : MonoBehaviour
 {
     public XRBaseController currc;
     public float defampl = 0.2f;
-    public float defdur = 0.1f;
+    public float defdur = 0.08f;
 
     Animator animator;
     private float gripTarget;
@@ -23,6 +23,7 @@ public class hand : MonoBehaviour
     Vector3 start;
     Vector3 end;
     bool punchstarted = false;
+    AudioSource ass;
 
     float dist;
     public float damage;
@@ -39,6 +40,7 @@ public class hand : MonoBehaviour
         animator = GetComponent<Animator>();
         lr = GetComponent<LineRenderer>();
         ve = this.gameObject.GetComponentInChildren<VisualEffect>();
+        ass = GetComponent<AudioSource>();
         lr.enabled = false;
         Tr.enabled = true;
     }
@@ -74,7 +76,8 @@ public class hand : MonoBehaviour
                 Debug.Log(damage);
                 Tr.emitting = false;
                 ve.Play();
-                collision.gameObject.GetComponent<enemys>().taked(damage); 
+                collision.gameObject.GetComponent<enemys>().taked(damage);
+                sendhap();
             }
             if (collision.gameObject.tag == "eb2")
             {
@@ -95,6 +98,8 @@ public class hand : MonoBehaviour
 
     public void sendhap()
     {
+        ass.pitch = UnityEngine.Random.Range(0.5f, 1f);
+        ass.Play();
         currc.SendHapticImpulse(defampl, defdur);
     }
     

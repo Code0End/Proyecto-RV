@@ -52,9 +52,10 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _fresnel: 0.27
+    - _fresnel: 0.58
     - _offset: 0.2
+    - _quantity: 0.66
     - _speed: 0.05
     m_Colors:
-    - _Emission: {r: 0.5596616, g: 0.04395248, b: 0, a: 0}
+    - _Emission: {r: 0.32097527, g: 0.023775948, b: 0, a: 0}
   m_BuildTextureStacks: []

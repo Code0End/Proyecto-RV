@@ -5296,6 +5296,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fe2700950f7fa4294b2d36cf5be759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currc: {fileID: 0}
+  defampl: 0.2
+  defdur: 0.1
   speed: 15
   fistpos: {fileID: 0}
   damage: 0
@@ -24797,6 +24800,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fe2700950f7fa4294b2d36cf5be759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currc: {fileID: 0}
+  defampl: 0.2
+  defdur: 0.1
   speed: 15
   fistpos: {fileID: 0}
   damage: 0
@@ -39331,6 +39337,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fe2700950f7fa4294b2d36cf5be759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currc: {fileID: 0}
+  defampl: 0.2
+  defdur: 0.1
   speed: 15
   fistpos: {fileID: 52566528}
   damage: 0
@@ -41368,6 +41377,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fe2700950f7fa4294b2d36cf5be759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currc: {fileID: 0}
+  defampl: 0.2
+  defdur: 0.1
   speed: 15
   fistpos: {fileID: 2019553418}
   damage: 0
