@@ -8,6 +8,7 @@ TagManager:
   - mesh1
   - eb2
   - sffder
+  - damage_zone
   layers:
   - Default
   - TransparentFX

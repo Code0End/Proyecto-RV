@@ -62,7 +62,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _aostrength: 0
-    - _dissolveamount: 0
+    - _dissolveamount: 1
     - _dissovescale: 30
     - _metallic: 0
     - _normalstrength: 0.5

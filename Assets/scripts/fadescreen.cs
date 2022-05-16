@@ -7,11 +7,15 @@ public class fadescreen : MonoBehaviour
     public float fadedur = 2;
     public Color fadecol;
     private Renderer faderend;
+    public bool start = false;
 
     void Start()
     {
         faderend = GetComponent<Renderer>();
-        fadein();
+        if (start == false)
+        {
+            fadein();
+        }
     }
 
     public void fadein()
@@ -19,9 +23,19 @@ public class fadescreen : MonoBehaviour
         fade(1,0);
     }
 
+    public void halffadein()
+    {
+        fade(0.3f, 0);
+    }
+
     public void fadeout()
     {
         fade(0,1);
+    }
+
+    public void halffadeout()
+    {
+        fade(0, 0.3f);
     }
 
     public void fade(float ai, float ao)

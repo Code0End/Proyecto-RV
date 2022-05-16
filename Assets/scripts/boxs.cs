@@ -13,6 +13,9 @@ public class boxs : MonoBehaviour
     public float fadedur = 2;
     public fadescreen fs;
     GameObject fs1;
+    GameObject mainc;
+
+    public AudioClip transsong;
 
     private Rigidbody rbb1;
     private SpringJoint rbb2;
@@ -25,6 +28,7 @@ public class boxs : MonoBehaviour
         hp = 100.0f;
         maxhp = 100.0f;
         fs1 = GameObject.FindGameObjectWithTag("sffder");
+        mainc = GameObject.FindGameObjectWithTag("MainCamera");
         fs = fs1.GetComponent<fadescreen>();
     }
 
@@ -70,12 +74,18 @@ public class boxs : MonoBehaviour
         }
         if (mn == 0)
         {
+            mainc.GetComponent<player>().p_c.SetActive(true);
+            mainc.GetComponent<AudioSource>().clip = transsong;
+            mainc.GetComponent<AudioSource>().Play();
             SceneManager.LoadScene(2);
             fs.fadein();
         }
         
         if (mn == 2)
         {
+            mainc.GetComponent<player>().p_c.SetActive(false);
+            mainc.GetComponent<AudioSource>().clip = transsong;
+            mainc.GetComponent<AudioSource>().Play();
             SceneManager.LoadScene(1);
             fs.fadein();
         }

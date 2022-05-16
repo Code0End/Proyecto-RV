@@ -91,14 +91,14 @@ public class hand : MonoBehaviour
                 Tr.emitting = false;
                 ve.Play();
                 collision.gameObject.GetComponent<boxs>().taked(damage);
-                sendhap();
+                //sendhap();
             }
         }
     }
 
     public void sendhap()
     {
-        ass.pitch = UnityEngine.Random.Range(0.5f, 1f);
+        ass.pitch = UnityEngine.Random.Range(0.4f, 0.8f);
         ass.Play();
         currc.SendHapticImpulse(defampl, defdur);
     }

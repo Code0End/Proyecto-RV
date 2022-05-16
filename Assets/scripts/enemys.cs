@@ -18,13 +18,29 @@ public class enemys : MonoBehaviour
     private string currentState;
 
     const string idle = "Idle";
+    const string dizzy = "dizzy";
     const string elbow_left = "elbow_left";
     const string elbow_right = "elbow_right";
     const string right_hook = "right_hook";
+    const string mid_slam = "mid_slam";
+
+    public GameObject left_elbow1;
+    public GameObject left_elbow2;
+    public GameObject right_elbow1;
+    public GameObject right_elbow2;
+    public GameObject overhead_1;
+    public GameObject midslam_1;
+
+    public float[] attacktimes = { 1.667f, 1.650f, 4.783f };
+    public float attackt;
+    public float attackm = 0.5f;
+
+    public GameObject player;
+    public float shp;
 
     public float hp;
     public float maxhp;
-    public float posture,maxposture;
+    public float posture =0f,maxposture =100f;
     public bool v = false;
     public int isatack = 0;
     public Animator anim;
@@ -34,13 +50,15 @@ public class enemys : MonoBehaviour
     AudioSource ass;
     public AudioClip gothit;
     public AudioClip respawnso;
+    public AudioClip pbreak;
 
     public Rigidbody gc1;
     public SkinnedMeshRenderer skin;
     Animator anime;
 
     private Material[] dissm;
-    hb hb;
+    public hb hb;
+    public hb pst;
     float dissolverate = 0.02f;
     float rr=0.04f; 
 
@@ -60,7 +78,6 @@ public class enemys : MonoBehaviour
         ass = this.gameObject.GetComponent<AudioSource>();
         colliders = this.gameObject.GetComponentsInChildren<Collider>();
         limbsrbs = this.gameObject.GetComponentsInChildren<Rigidbody>();
-        hb = this.gameObject.GetComponent<hb>();
         SetRagdollParts();
         cv = this.gameObject.GetComponentInChildren<Canvas>();
         if(skin != null)
@@ -119,6 +136,7 @@ public class enemys : MonoBehaviour
             ass.Play();
             Debug.Log("DEATH");
             cv.enabled = false;
+            isatack = 4;
             Invoke("Respawn",4);
             TurnOnRagdoll();
             StartCoroutine(Dissolve());
@@ -205,10 +223,11 @@ public class enemys : MonoBehaviour
 
     IEnumerator recovery()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(8.0f);
         v = false;
         state = State.non_vulnerable;
-        
+        posture = 0f;
+        pst.UpdateHealth(posture / maxposture);
     }
 
     IEnumerator wind_attack()
@@ -226,6 +245,7 @@ public class enemys : MonoBehaviour
     {
         yield return new WaitForSeconds(a);
         isatack = 0;
+        check_posture();
     }
 
     void go_non_vulnerable()
@@ -236,7 +256,7 @@ public class enemys : MonoBehaviour
     void Respawn()
     {
         GameObject clone1 = (GameObject)Instantiate(enemyref);
-        clone1.transform.position = transform.position;
+        clone1.transform.position = new Vector3(-0.03f, 1.785f, -1.04f);
     }
 
     void ChangeAnimationState(string newState)
@@ -249,23 +269,74 @@ public class enemys : MonoBehaviour
 
     void select_attack()
     {
-        int r = UnityEngine.Random.Range(1,4);
+        anime.speed = attackm;
+        shp = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<player>().hp;
+        int r = UnityEngine.Random.Range(1,5);
         switch (r){
             case 1:
+                attackt = attacktimes[1] * (attackm*2-attackm);
                 ChangeAnimationState(right_hook);
-                StartCoroutine(attack_len(1.667f));
+                StartCoroutine(attack_len(attackt));
+                overhead_1.SetActive(true);
+                overhead_1.GetComponent<damage_zone>().attack(attackt);
                 break;
             case 2:
+                attackt = attacktimes[1] * (attackm * 2 - attackm);
                 ChangeAnimationState(elbow_right);
-                StartCoroutine(attack_len(1.667f));
+                StartCoroutine(attack_len(attackt));
+                if (UnityEngine.Random.Range(0, 2) == 1)
+                {
+                    right_elbow1.SetActive(true);
+                    right_elbow1.GetComponent<damage_zone>().attack(attackt);
+                }
+                else
+                {
+                    right_elbow2.SetActive(true);
+                    right_elbow2.GetComponent<damage_zone>().attack(attackt);
+                }
                 break;
             case 3:
+                attackt = attacktimes[0] * (attackm * 2 - attackm);
                 ChangeAnimationState(elbow_left);
-                StartCoroutine(attack_len(1.650f));
+                StartCoroutine(attack_len(attackt));
+                if (UnityEngine.Random.Range(0, 2) == 1)
+                {
+                    left_elbow1.SetActive(true);
+                    left_elbow1.GetComponent<damage_zone>().attack(attackt);
+                }
+                else
+                {
+                    left_elbow2.SetActive(true);
+                    left_elbow2.GetComponent<damage_zone>().attack(attackt);
+                }
+                break;
+            case 4:
+                attackt = attacktimes[2] * (attackm*0.6f);
+                anime.speed += 0.4f;
+                ChangeAnimationState(mid_slam);
+                StartCoroutine(attack_len(attackt));
+                midslam_1.SetActive(true);
+                midslam_1.GetComponent<damage_zone>().attack(attackt);
                 break;
             default:
                 break;
 
+        }
+    }
+    public void check_posture()
+    {
+        if (shp == GameObject.FindGameObjectWithTag("MainCamera").GetComponent<player>().hp)
+        {
+            posture += 20f;
+            pst.UpdateHealth(posture / maxposture);
+            if (posture >= 100)
+            {
+                ChangeAnimationState(dizzy);
+                state = State.vulnerable;
+                ass.clip = pbreak;
+                ass.pitch = UnityEngine.Random.Range(0.8f, 1.1f);
+                ass.Play();
+            }
         }
     }
 }
