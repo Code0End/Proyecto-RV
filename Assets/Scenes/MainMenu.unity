@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17316318, g: 0.16457182, b: 0.29665613, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -295,7 +295,6 @@ MonoBehaviour:
   as1: {fileID: 49841870}
   fadedur: 2.6
   fs: {fileID: 1045270347}
-  musicm: {fileID: 0}
   transsong: {fileID: 0}
 --- !u!82 &49841870
 AudioSource:
@@ -1102,7 +1101,6 @@ MonoBehaviour:
   as1: {fileID: 188218086}
   fadedur: 2.6
   fs: {fileID: 1045270347}
-  musicm: {fileID: 0}
   transsong: {fileID: 8300000, guid: 337452ecd2e015a41a74f0ad92a7fb93, type: 3}
 --- !u!82 &188218086
 AudioSource:
@@ -21584,7 +21582,6 @@ MonoBehaviour:
   as1: {fileID: 2041215460}
   fadedur: 2.6
   fs: {fileID: 1045270347}
-  musicm: {fileID: 0}
   transsong: {fileID: 0}
 --- !u!82 &2041215460
 AudioSource:

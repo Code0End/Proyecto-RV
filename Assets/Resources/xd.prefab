@@ -1475,15 +1475,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b158a6cc0b620c4da0b8f57db9919bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  left_elbow1: {fileID: 0}
+  left_elbow2: {fileID: 0}
+  right_elbow1: {fileID: 0}
+  right_elbow2: {fileID: 0}
+  overhead_1: {fileID: 0}
+  midslam_1: {fileID: 0}
+  dparent: {fileID: 0}
+  attacktimes:
+  - 1.667
+  - 1.65
+  - 4.783
+  attackt: 0
+  attackm: 0.5
+  player: {fileID: 0}
+  shp: 0
   hp: 100
   maxhp: 0
   posture: 0
   maxposture: 0
   v: 1
+  isatack: 0
   anim: {fileID: 1390128550609313085}
   RIGID_BODY: {fileID: 1390128550609313075}
+  gothit: {fileID: 0}
+  respawnso: {fileID: 0}
+  pbreak: {fileID: 0}
   gc1: {fileID: 1390128549993675283}
   skin: {fileID: 1390128550869632596}
+  hb: {fileID: 0}
+  pst: {fileID: 0}
 --- !u!114 &1390128550609313073
 MonoBehaviour:
   m_ObjectHideFlags: 0

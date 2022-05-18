@@ -9,6 +9,9 @@ TagManager:
   - eb2
   - sffder
   - damage_zone
+  - damage_proyectile
+  - damage_box
+  - death_box
   layers:
   - Default
   - TransparentFX

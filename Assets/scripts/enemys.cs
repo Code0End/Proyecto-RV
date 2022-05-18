@@ -23,6 +23,8 @@ public class enemys : MonoBehaviour
     const string elbow_right = "elbow_right";
     const string right_hook = "right_hook";
     const string mid_slam = "mid_slam";
+    const string left_punch = "left_punch";
+    const string right_punch = "right_punch";
 
     public GameObject left_elbow1;
     public GameObject left_elbow2;
@@ -31,7 +33,12 @@ public class enemys : MonoBehaviour
     public GameObject overhead_1;
     public GameObject midslam_1;
 
-    public float[] attacktimes = { 1.667f, 1.650f, 4.783f };
+    public GameObject left_plane;
+    public GameObject right_plane;
+
+    public GameObject dparent;
+
+    public float[] attacktimes = { 1.667f, 1.650f, 4.783f,1.2f };
     public float attackt;
     public float attackm = 0.5f;
 
@@ -203,7 +210,8 @@ public class enemys : MonoBehaviour
                 dissm[i].SetFloat("_dissolveamount",c);
             yield return new WaitForSeconds(rr);
         }
-        Destroy(gameObject, 7);
+        dparent.GetComponent<dedestroy>().dedestroys();
+        //Destroy(gameObject, 7);
     }
 
     IEnumerator Essolve()
@@ -271,7 +279,7 @@ public class enemys : MonoBehaviour
     {
         anime.speed = attackm;
         shp = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<player>().hp;
-        int r = UnityEngine.Random.Range(1,5);
+        int r = UnityEngine.Random.Range(1,7);
         switch (r){
             case 1:
                 attackt = attacktimes[1] * (attackm*2-attackm);
@@ -318,11 +326,56 @@ public class enemys : MonoBehaviour
                 midslam_1.SetActive(true);
                 midslam_1.GetComponent<damage_zone>().attack(attackt);
                 break;
+            case 5:
+                attackt = attacktimes[3] * (attackm*3);
+                anime.speed -= 0.4f;
+                ChangeAnimationState(left_punch);
+                StartCoroutine(attack_len(attackt));
+                int rng = UnityEngine.Random.Range(0, 3);
+                if (rng == 0)
+                {
+                    left_plane.GetComponent<plane>().attack(attackt);
+                }
+                if (rng == 1)
+                {
+                    left_plane.GetComponent<plane>().attack(attackt);
+                    left_plane.GetComponent<plane>().attack(attackt);
+                }
+                if (rng== 2)
+                {
+                    left_plane.GetComponent<plane>().attack(attackt);
+                    left_plane.GetComponent<plane>().attack(attackt);
+                    left_plane.GetComponent<plane>().attack(attackt);
+                }
+                break;
+            case 6:
+                attackt = attacktimes[3] * (attackm * 3);
+                anime.speed -= 0.4f;
+                ChangeAnimationState(right_punch);
+                StartCoroutine(attack_len(attackt));
+                int rng2 = UnityEngine.Random.Range(0, 3);
+                if(rng2 == 0)
+                {
+                    right_plane.GetComponent<plane>().attack(attackt);
+                }
+                if (rng2 == 1)
+                {
+                    right_plane.GetComponent<plane>().attack(attackt);
+                    right_plane.GetComponent<plane>().attack(attackt);
+                }
+                if (rng2 == 2)
+                {
+                    right_plane.GetComponent<plane>().attack(attackt);
+                    right_plane.GetComponent<plane>().attack(attackt);
+                    right_plane.GetComponent<plane>().attack(attackt);
+                }
+                break;
             default:
                 break;
 
         }
     }
+
     public void check_posture()
     {
         if (shp == GameObject.FindGameObjectWithTag("MainCamera").GetComponent<player>().hp)
@@ -334,7 +387,7 @@ public class enemys : MonoBehaviour
                 ChangeAnimationState(dizzy);
                 state = State.vulnerable;
                 ass.clip = pbreak;
-                ass.pitch = UnityEngine.Random.Range(0.8f, 1.1f);
+                ass.pitch = UnityEngine.Random.Range(0.7f, 1.1f);
                 ass.Play();
             }
         }

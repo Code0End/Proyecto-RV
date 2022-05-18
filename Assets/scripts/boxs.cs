@@ -15,6 +15,8 @@ public class boxs : MonoBehaviour
     GameObject fs1;
     GameObject mainc;
 
+    public float damage;
+
     public AudioClip transsong;
 
     private Rigidbody rbb1;
@@ -74,9 +76,11 @@ public class boxs : MonoBehaviour
         }
         if (mn == 0)
         {
+
             mainc.GetComponent<player>().p_c.SetActive(true);
-            mainc.GetComponent<AudioSource>().clip = transsong;
-            mainc.GetComponent<AudioSource>().Play();
+            mainc.GetComponent<player>().player_healthbar.UpdateHealth(100 / 100);
+            mainc.GetComponent<player>().ass2.clip = transsong;
+            mainc.GetComponent<player>().ass2.Play();
             SceneManager.LoadScene(2);
             fs.fadein();
         }
@@ -84,8 +88,8 @@ public class boxs : MonoBehaviour
         if (mn == 2)
         {
             mainc.GetComponent<player>().p_c.SetActive(false);
-            mainc.GetComponent<AudioSource>().clip = transsong;
-            mainc.GetComponent<AudioSource>().Play();
+            mainc.GetComponent<player>().ass2.clip = transsong;
+            mainc.GetComponent<player>().ass2.Play();
             SceneManager.LoadScene(1);
             fs.fadein();
         }

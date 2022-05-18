@@ -10,6 +10,7 @@ public class player : MonoBehaviour
     public hb player_healthbar;
     public GameObject p_c;
     public AudioSource ass;
+    public AudioSource ass2;
     public AudioClip mmsong;
     public fadescreen fs1;
     public fadescreen fs2;
@@ -64,12 +65,13 @@ public class player : MonoBehaviour
         if (mn == 0)
         {
             p_c.SetActive(false);
-            SceneManager.LoadScene(1);
+            player_healthbar.UpdateHealth(hp / maxhp);
+            ass2.Stop();
+            ass2.clip = mmsong;
+            ass2.Play();
             fs1.fadein();
             hp = 100;
-            player_healthbar.UpdateHealth(hp / maxhp);
-            ass.clip = mmsong;
-            ass.Play();
+            SceneManager.LoadScene(1);
         }
     }
 
@@ -78,6 +80,14 @@ public class player : MonoBehaviour
         if (collider.gameObject.tag == "damage_zone")
         {
             taked(collider.gameObject.GetComponent<damage_zone>().damage);
+        }
+        if (collider.gameObject.tag == "damage_proyectile")
+        {
+            taked(collider.gameObject.GetComponent<proyectil>().damage);
+        }
+        if (collider.gameObject.tag == "damage_box")
+        {
+            taked(collider.gameObject.GetComponent<boxs>().damage);
         }
     }
 }

@@ -22,7 +22,7 @@ public class hand : MonoBehaviour
     public GameObject fistpos;
     Vector3 start;
     Vector3 end;
-    bool punchstarted = false;
+    bool punchstarted = true;
     AudioSource ass;
 
     float dist;
@@ -45,7 +45,6 @@ public class hand : MonoBehaviour
         Tr.enabled = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         AnimateHand(); 
@@ -73,11 +72,11 @@ public class hand : MonoBehaviour
                 lr.SetPosition(1, end);
                 dist = Vector3.Distance(start, end);
                 damage = (dist * 100) / 2;
-                Debug.Log(damage);
                 Tr.emitting = false;
                 ve.Play();
                 collision.gameObject.GetComponent<enemys>().taked(damage);
                 sendhap();
+                sends();
             }
             if (collision.gameObject.tag == "eb2")
             {
@@ -87,22 +86,39 @@ public class hand : MonoBehaviour
                 lr.SetPosition(1, end);
                 dist = Vector3.Distance(start, end);
                 damage = (dist * 100) / 2;
-                Debug.Log(damage);
                 Tr.emitting = false;
                 ve.Play();
                 collision.gameObject.GetComponent<boxs>().taked(damage);
-                //sendhap();
+                sendhap();
             }
         }
     }
 
     public void sendhap()
     {
-        ass.pitch = UnityEngine.Random.Range(0.4f, 0.8f);
-        ass.Play();
         currc.SendHapticImpulse(defampl, defdur);
     }
-    
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "damage_proyectile")
+        {
+
+            Destroy(collider.gameObject);
+            ve.Play();
+            ass.pitch = UnityEngine.Random.Range(0.3f, 0.5f);
+            ass.volume = ass.volume / 3;
+            ass.Play();
+            ass.volume = ass.volume * 3;
+        }
+    }
+
+    public void sends()
+    {
+        ass.pitch = UnityEngine.Random.Range(0.5f, 0.8f);
+        ass.Play();
+    }
+
     void AnimateHand() {
 
         if (gripCurrent != gripTarget)
