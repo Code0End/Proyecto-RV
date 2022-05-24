@@ -87,10 +87,21 @@ public class boxs : MonoBehaviour
         
         if (mn == 2)
         {
+            fs.fadeout();
             mainc.GetComponent<player>().p_c.SetActive(false);
             mainc.GetComponent<player>().ass2.clip = transsong;
             mainc.GetComponent<player>().ass2.Play();
             SceneManager.LoadScene(1);
+            fs.fadein();
+        }
+        if (mn == 3)
+        {
+            mainc.GetComponent<player>().p_c.SetActive(true);
+            mainc.GetComponent<player>().player_healthbar.UpdateHealth(100 / 100);
+            mainc.GetComponent<player>().ass2.clip = transsong;
+            mainc.GetComponent<player>().ass2.Play();
+            mainc.GetComponent<player>().mn = 1;
+            SceneManager.LoadScene(2);
             fs.fadein();
         }
         if (mn == 1)

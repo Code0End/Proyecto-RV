@@ -12,6 +12,8 @@ TagManager:
   - damage_proyectile
   - damage_box
   - death_box
+  - text1
+  - penemy
   layers:
   - Default
   - TransparentFX

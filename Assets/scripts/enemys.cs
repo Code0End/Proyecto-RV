@@ -146,8 +146,11 @@ public class enemys : MonoBehaviour
             isatack = 4;
             Invoke("Respawn",4);
             TurnOnRagdoll();
+            if (GameObject.FindGameObjectWithTag("text1") != null)
+            {
+                GameObject.FindGameObjectWithTag("text1").GetComponent<reloj>().updatenumenemies();
+            }
             StartCoroutine(Dissolve());
-
         }
     }
 

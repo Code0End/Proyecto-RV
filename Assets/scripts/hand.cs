@@ -22,7 +22,7 @@ public class hand : MonoBehaviour
     public GameObject fistpos;
     Vector3 start;
     Vector3 end;
-    bool punchstarted = true;
+    bool punchstarted = false;
     AudioSource ass;
 
     float dist;
@@ -43,6 +43,7 @@ public class hand : MonoBehaviour
         ass = GetComponent<AudioSource>();
         lr.enabled = false;
         Tr.enabled = true;
+        punchstarted = false;
     }
 
     void Update()
@@ -149,7 +150,8 @@ public class hand : MonoBehaviour
             }
             else
             {
-                Tr.emitting = false; 
+                Tr.emitting = false;
+                punchstarted = false;
             }
         }
         

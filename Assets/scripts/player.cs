@@ -18,6 +18,7 @@ public class player : MonoBehaviour
 
     void Start()
     {
+        
         hp = 100;
     }
 
@@ -72,6 +73,18 @@ public class player : MonoBehaviour
             fs1.fadein();
             hp = 100;
             SceneManager.LoadScene(1);
+        }
+       else
+        {
+            p_c.SetActive(false);
+            player_healthbar.UpdateHealth(hp / maxhp);
+            ass2.Stop();
+            ass2.clip = mmsong;
+            ass2.Play();
+            fs1.fadein();
+            hp = 100;
+            Destroy(GameObject.FindGameObjectWithTag("penemy"));
+            
         }
     }
 
